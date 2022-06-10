@@ -25,13 +25,11 @@
 # and donuts(23) returns 'Number of donuts: many'
 def donuts(count):
   # +++your code here+++
-    msg = ''
-    if count < 10:
-        msg = 'Number of donuts: ' + str(count)
-    else:
-        msg = 'Number of donuts: many'
-    return msg
-
+  if count >= 10:
+    msg = "Number of donuts: many"
+  else:
+    msg = ("Number of donuts: %d" % count)
+  return msg
 
 # B. both_ends
 # Given a string s, return a string made of the first 2
@@ -40,11 +38,11 @@ def donuts(count):
 # is less than 2, return instead the empty string.
 def both_ends(s):
   # +++your code here+++
+  if len(s) < 2:
     s_new = ''
-    if len(s) >= 2:
-        s_new = s[0:2] + s[-2:]
-    return s_new
-
+  else:
+    s_new = s[:2] + s[-2:]
+  return s_new
 
 # C. fix_start
 # Given a string s, return a string
@@ -57,14 +55,15 @@ def both_ends(s):
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
   # +++your code here+++
-    s_new = ''
-    if len(s) >= 1:
-        s_new = s.replace(s[0], '*')
-        s_new = s[0] + s_new[1:]
-    else:
-        print("error: please input a string that is not empty")
+  if len(s) < 1:
+    print("Warning: input cannot be an empty string")
+  elif len(s) == 1:
+    return s
+  else:
+    s_new = s[0]
+    s = s.replace(s[0],'*')
+    s_new = s_new + s[1:]
     return s_new
-
 
 # D. MixUp
 # Given strings a and b, return a single string with a and b separated
@@ -75,13 +74,11 @@ def fix_start(s):
 # Assume a and b are length 2 or more.
 def mix_up(a, b):
   # +++your code here+++
-    s_new = ''
-    if len(a) >= 2 and len(b) >= 2:
-        s_new = b[0:2] + a[2:] + ' ' + a[0:2] + b[2:]
-    else:
-        print("error: please input strings a and b with length more than 1")
+  if len(a) >= 2 and len(b) >= 2:
+    s_new = b[:2] + a[2:] + ' ' + a[:2] + b[2:]
     return s_new
-
+  else:
+    print("Warning: a or b must be length 2 or more")
 
 # Provided simple test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
