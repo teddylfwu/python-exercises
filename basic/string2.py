@@ -17,15 +17,12 @@
 # Return the resulting string.
 def verbing(s):
   # +++your code here+++
-    s_new = ''
-    if len(s) < 3:
-        s_new  = s
-    else:
-        if s[-3:] == 'ing':
-            s_new = s + 'ly'
-        else:
-            s_new = s + 'ing'
-    return s_new
+    if len(s) >= 3:
+      if s[-3:] == 'ing':
+        s = s + 'ly' 
+      else:
+        s = s + 'ing'
+    return s
 
 
 # E. not_bad
@@ -38,14 +35,11 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
   # +++your code here+++
-    s_new = ''
-    not_ind = s.find('not')
-    bad_ind = s.find('bad')
-    if not_ind < bad_ind:
-        s_new = s[0:not_ind] + 'good' + s[bad_ind+3:]
-    else:
-        s_new = s
-    return s_new
+  not_ind = s.find('not') 
+  bad_ind = s.find('bad')
+  if not_ind != -1 and bad_ind != -1 and not_ind < bad_ind:
+    s  = s[:not_ind] + 'good' + s[bad_ind+3:]
+  return s
 
 
 # F. front_back
@@ -57,16 +51,15 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
   # +++your code here+++
-    s_new = ''
-    if len(a)%2 == 0 and len(b)%2 == 0:
-        s_new = a[0:(len(a)//2)] + b[0:(len(b)//2)] + a[(len(a)//2):] + b[(len(b)//2):]
-    elif len(a)%2 != 0 and len(b)%2 == 0:
-        s_new = a[0:(len(a)//2+1)] + b[0:(len(b)//2)] + a[(len(a)//2+1):] + b[(len(b)//2):]
-    elif len(a)%2 == 0 and len(b)%2 != 0:
-        s_new = a[0:(len(a)//2)] + b[0:(len(b)//2+1)] + a[(len(a)//2):] + b[(len(b)//2+1):]
-    else:
-        s_new = a[0:(len(a)//2+1)] + b[0:(len(b)//2+1)] + a[(len(a)//2+1):] + b[(len(b)//2+1):]
-    return s_new
+  if len(a)%2 == 0 and len(b)%2 == 0:
+    s = a[0:len(a)//2] + b[0:len(b)//2] + a[len(a)//2:] + b[len(b)//2:]
+  elif len(a)%2 == 1 and len(b)%2 == 0:
+    s = a[0:len(a)//2+1] + b[0:len(b)//2] + a[len(a)//2+1:] + b[len(b)//2:]
+  elif len(a)%2 == 0 and len(b)%2 == 1:
+    s = a[0:len(a)//2] + b[0:len(b)//2+1] + a[len(a)//2:] + b[len(b)//2+1:]
+  else:
+    s = a[0:len(a)//2+1] + b[0:len(b)//2+1] + a[len(a)//2+1:] + b[len(b)//2+1:]
+  return s
 
 
 # Simple provided test() function used in main() to print
